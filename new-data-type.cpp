@@ -60,7 +60,7 @@ int ValkeyPair::register_type(ValkeyModuleCtx* ctx)
         return VALKEYMODULE_ERR;
     }
 
-    if (ValkeyModule_CreateCommand(ctx, "pair.get", ValkeyPair::on_get, "write", 1, 1, 1) == VALKEYMODULE_ERR) {
+    if (ValkeyModule_CreateCommand(ctx, "pair.get", ValkeyPair::on_get, "readonly", 1, 1, 1) == VALKEYMODULE_ERR) {
         return VALKEYMODULE_ERR;
     }
     return VALKEYMODULE_OK;
