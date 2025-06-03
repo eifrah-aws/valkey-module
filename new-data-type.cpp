@@ -95,6 +95,10 @@ int ValkeyPair::on_get(ValkeyModuleCtx* ctx, ValkeyModuleString** argv, int argc
     }
 
     ValkeyModuleKey* key = ValkeyModule_OpenKey(ctx, argv[1], VALKEYMODULE_READ);
+    if (key == nullptr) {
+        ValkeyModule_ReplyWithNullArray(ctx);
+        return VALKEYMODULE_OK;
+    }
 
     // Create new pair
     ValkeyPair* pair = static_cast<ValkeyPair*>(ValkeyModule_ModuleTypeGetValue(key));
