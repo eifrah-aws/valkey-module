@@ -82,8 +82,9 @@ int ValkeyPair::on_set(ValkeyModuleCtx* ctx, ValkeyModuleString** argv, int argc
 
     // Set the value
     ValkeyModule_ModuleTypeSetValue(key, PairType, pair);
-
     ValkeyModule_ReplyWithSimpleString(ctx, "OK");
+
+    ValkeyModule_CloseKey(key);
     return VALKEYMODULE_OK;
 }
 
@@ -105,6 +106,8 @@ int ValkeyPair::on_get(ValkeyModuleCtx* ctx, ValkeyModuleString** argv, int argc
     ValkeyModule_ReplyWithArray(ctx, 2);
     ValkeyModule_ReplyWithCString(ctx, pair->first.c_str());
     ValkeyModule_ReplyWithCString(ctx, pair->second.c_str());
+
+    ValkeyModule_CloseKey(key);
     return VALKEYMODULE_OK;
 }
 
