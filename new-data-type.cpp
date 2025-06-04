@@ -77,6 +77,10 @@ int ValkeyPair::on_set(ValkeyModuleCtx* ctx, ValkeyModuleString** argv, int argc
 
     // Create new pair
     ValkeyPair* pair = static_cast<ValkeyPair*>(ValkeyModule_Alloc(sizeof(ValkeyPair)));
+
+    // Call the c-tor
+    new (pair) ValkeyPair();
+
     pair->first = from_valkey_string(argv[2]);
     pair->second = from_valkey_string(argv[3]);
 
