@@ -123,6 +123,8 @@ void* ValkeyPair::rdb_load(ValkeyModuleIO* rdb, int encver)
     }
 
     ValkeyPair* pair = static_cast<ValkeyPair*>(ValkeyModule_Alloc(sizeof(ValkeyPair)));
+    // Call the c-tor
+    new (pair) ValkeyPair();
     pair->first = from_valkey_string(ValkeyModule_LoadString(rdb), true);
     pair->second = from_valkey_string(ValkeyModule_LoadString(rdb), true);
     return pair;
